@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CRUD Application</title>
+</head>
+<body>
+<h2>Add a New User</h2>
+<form th:object="${newUser}" th:action="@{/save}" method="post">
+    <label>Name: <input type="text" th:field="*{name}" /></label>
+    <label>Email: <input type="text" th:field="*{email}" /></label>
+    <label>Phone Number: <input type="text" th:field="*{phoneNumber}" /></label>
+    <button type="submit">Save</button>
+</form>
+
+<h2>User List</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}">1</td>
+        <td th:text="${user.name}">John Doe</td>
+        <td th:text="${user.email}">john@example.com</td>
+        <td th:text="${user.phoneNumber}">123-456-7890</td>
+        <td><a th:href="@{'/delete/' + ${user.id}}">Delete</a></td>
+    </tr>
+</table>
+</body>
+</html>
+
+/*
+    "Abbas Abbas"
+    "Matrikulation nummer: 1458950"
+    "created: 03.11.2023"
+
+*/
